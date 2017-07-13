@@ -1,0 +1,13 @@
+<h1> Checkout </h1>
+<%= form_tag "/products", method: "post" do %>
+  <div>
+    price: <input type="text" name="form_price">
+  </div>
+  <div>
+    description: <input type="text" name="form_description">
+  </div>
+  <input type="submit" value="Purchase">
+<% end %>
+
+
+ 

@@ -1,1 +1,11 @@
-show.html.erb
+<h1> Project Runway</h1> 
+<h2><%= @product.price %></h2>
+<h3><%= @product.description %></h3>
+<a href="/products/<%= @product.id %>/edit">Edit this product</a>
+<%= form_tag "/products/#{@product.id}", method: "delete" do %>
+  <input type="submit" value="Destroy product">
+<% end %>
+
+<a href="/products">Back to all products</a>
+<% end %>
+
