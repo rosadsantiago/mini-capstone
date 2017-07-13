@@ -1,18 +1,8 @@
 class ProductsController < ApplicationController
+
   def index
     @products = Product.all
-    render "product.html.erb"
-  end
-
-  def index
-    @products = Product.all 
-    render "all_products.html.erb"
-  end
-
-  def show
-    product_id = params[:id]
-    @product = Product.find_by(id: product_id)
-    render "show.html.erb"
+    render "index.html.erb"
   end
 
   def new 
@@ -25,15 +15,20 @@ class ProductsController < ApplicationController
       description:params[:form_description]
       )
      product.save
-     render "create.html.erb"
      flash[:sucess] = "Product succesfully saved!"
      redirect_to "/products/#{product.id}"
+   end
 
+  def show
+    product_id = params[:id]
+    @product = Product.find_by(id: product_id)
+    render "show.html.erb"
   end
 
   def edit
     product_id = params[:id]
     @product = Product.find_by(id: product_id)
+    render "edit.html.erb"
   end
 
 def update
@@ -50,9 +45,7 @@ def destroy
   product_id = params[:id]
   @product = Product.find_by(id: product_id)
   product.destroy
-  render "destroy.html.erb"
   flash[:sucess] = "Contacts succesfully destroyed!"
   redirect_to "/products/#{@product.id}"
 end
-
 end
