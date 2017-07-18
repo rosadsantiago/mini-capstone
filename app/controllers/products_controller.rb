@@ -1,9 +1,23 @@
+
 class ProductsController < ApplicationController
 
   def index
-    @products = Product.all
+    
+    sort_attribute = params[:sort_by]
+    search_terms = params[:input_search_terms]
+
+    if search_terms
+      @products = Product.where("name ILIKE ?", "%#{search_terms}%")
+    else
+      @products = Product.all
+    end
+
+    if sort_attribute
+      @products = Product.all.order(sort_attribute)
+    end
     render "index.html.erb"
   end
+
 
   def new 
     render "new.html.erb"
@@ -48,4 +62,7 @@ def destroy
   flash[:sucess] = "Contacts succesfully destroyed!"
   redirect_to "/products/#{@product.id}"
 end
+
+
+
 end

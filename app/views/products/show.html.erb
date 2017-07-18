@@ -2,9 +2,13 @@
 
 <h2><%= @product.price %></h2>
 <h3><%= @product.description %></h3>
-<a href="/products/<%= @product.id %>/edit">Edit this product</a>
-<%= form_tag "/products/#{@product.id}", method: "delete" do %>
-  <input type="submit" value="Destroy product">
+<h4 class="<%= @product.sale_message_class_name %>"><%= @product.sale_message %></h4>
+             <p>Price: <%= number_to_currency(@product.price) %></p>
+             <p>Tax: <%= number_to_currency(@product.tax) %></p>
+             <p>Total: <%= number_to_currency(@product.total) %></p>
+    <a href="/products/<%= @product.id %>/edit">Edit this product</a>
+        <%= form_tag "/products/#{@product.id}", method: "delete" do %>
+            <input type="submit" value="Destroy product">
 <% end %>
 
 <a href="/products">Back to all products</a>
