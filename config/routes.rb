@@ -7,5 +7,9 @@ get "/products/:id" => "products#show"
 get "/products/:id/edit" => "products#edit"
 patch "/products/id:" => "products#update"
 delete "/products/id" => "products#destroy"
+
+get "/signup" => "users#new"
+post "/users" => "users#create"
+get "/logout" => "sessions#destroy"
 end
      
